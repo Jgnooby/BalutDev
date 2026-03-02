@@ -7,29 +7,73 @@ public partial class Player : CharacterBody3D
 	public const float JumpVelocity = 4.5f;
 	public const float runSpeed = 8.0f;
 
+	public CollisionShape3D playerCollision;
+	public MeshInstance3D playerMesh;
+
+	private bool isCrouching = false;
+
+	public override void _Ready()
+	{
+		playerCollision = GetNode<CollisionShape3D>("CollisionShape3D");
+		playerMesh = GetNode<MeshInstance3D>("MeshInstance3D");
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
 		Vector3 velocity = Velocity;
 
-		// Add the gravity.
+		// Crouch
+		if (Input.IsActionJustPressed("crouch"))
+		{
+			isCrouching = !isCrouching;
+
+			if (isCrouching)
+			{
+				playerCollision.Scale = new Vector3(1, 0.5f, 1);
+				playerMesh.Scale = new Vector3(
+					playerMesh.Scale.X,
+					0.5f,
+					playerMesh.Scale.Z
+				);
+			}
+			else
+			{
+				playerCollision.Scale = new Vector3(1, 1, 1);
+				playerMesh.Scale = new Vector3(
+					playerMesh.Scale.X,
+					1f,
+					playerMesh.Scale.Z
+				);
+			}
+		}
+
+		// Gravity
 		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
 		}
 
-		// Handle Jump.
+		// Jump
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
 			velocity.Y = JumpVelocity;
+
+			// Force stand when jumping
+			isCrouching = false;
+			playerCollision.Scale = new Vector3(1, 1, 1);
+			playerMesh.Scale = new Vector3(
+				playerMesh.Scale.X,
+				1f,
+				playerMesh.Scale.Z
+			);
 		}
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
+		// Movement
 		Vector2 inputDir = Input.GetVector("left", "right", "forward", "backward");
 		Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-		
+
 		float currentSpeed = Input.IsActionPressed("run") ? runSpeed : Speed;
-		
+
 		if (direction != Vector3.Zero)
 		{
 			velocity.X = direction.X * currentSpeed;
