@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://7ufc41piqg5v"]
+[gd_scene format=3 uid="uid://7ufc41piqg5v"]
 
 [ext_resource type="Texture2D" uid="uid://0vtj6etgydmm" path="res://icon.svg" id="1_5gx2l"]
 [ext_resource type="PackedScene" uid="uid://ea26kwtnp7jn" path="res://player/player.tscn" id="2_qohg2"]
-[ext_resource type="PackedScene" uid="uid://bv5o1jpjxjq24" path="res://3dmodels/house/scene.gltf" id="3_qohg2"]
+[ext_resource type="Script" uid="uid://cwq5kbcsft5hb" path="res://level/opendoor.gd" id="3_qohg2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5gx2l"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -26,43 +26,58 @@ uv1_scale = Vector3(3, 2, 1)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qohg2"]
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vkbyq"]
-resource_local_to_scene = true
+[sub_resource type="BoxMesh" id="BoxMesh_vkbyq"]
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_qohg2"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="Node3D" type="Node3D" unique_id=602292512]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=856490535]
 environment = SubResource("Environment_vkbyq")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=557697972]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=517034138]
 transform = Transform3D(40.93296, 0, 0, 0, 1, 0, 0, 0, 51.816555, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_ktfr2")
 mesh = SubResource("BoxMesh_44x8d")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=829669679]
 transform = Transform3D(40.93296, 0, 0, 0, 1, 0, 0, 0, 51.816555, 0, 0, 0)
 shape = SubResource("ConcavePolygonShape3D_qohg2")
 
-[node name="player" parent="." instance=ExtResource("2_qohg2")]
+[node name="player" parent="." unique_id=1365062769 instance=ExtResource("2_qohg2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7675166, 0)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=192808382]
 transform = Transform3D(1, 0, 0, 0, -0.8394871, 0.54337966, 0, -0.54337966, -0.8394871, 0, 11.17981, -6.5076427)
 
-[node name="Sketchfab_Scene" parent="." instance=ExtResource("3_qohg2")]
-transform = Transform3D(22.189062, 0, 0, 0, 22.15614, 0, 0, 0, 18.230558, -18.252535, 2.8136191, 0)
+[node name="Node3D" type="Node3D" parent="." unique_id=1060645970]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.500552, 0)
+script = ExtResource("3_qohg2")
 
-[node name="door010" parent="Sketchfab_Scene/Sketchfab_model/8bc49c18438d4d7b98db3b6024b61947_fbx/Object_2/RootNode" index="873"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 68.83325, 4.898, 1.8063354)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D" unique_id=906530645]
+transform = Transform3D(0.15055296, 0, 0, 0, 4.4033933, 0, 0, 0, 0.93117523, -3.241859, -2.6937697, 2.0074563)
+mesh = SubResource("BoxMesh_vkbyq")
 
-[node name="door009" parent="Sketchfab_Scene/Sketchfab_model/8bc49c18438d4d7b98db3b6024b61947_fbx/Object_2/RootNode" index="874"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 63.417454, 4.8980007, 1.7696304)
+[node name="Area3D" type="Area3D" parent="Node3D" unique_id=2021649293]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_Scene"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Area3D" unique_id=882255369]
+transform = Transform3D(1, 0, 0, 0, 7.2680774, 0, 0, 0, 2.2030299, -3.1219192, -1.269279, 2.2528746)
+shape = SubResource("BoxShape3D_qohg2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_Scene/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_vkbyq")
+[node name="CanvasLayer" type="CanvasLayer" parent="Node3D" unique_id=1912512684]
 
-[editable path="Sketchfab_Scene"]
+[node name="Button" type="Button" parent="Node3D/CanvasLayer" unique_id=345202371]
+offset_left = 24.0
+offset_top = 26.0
+offset_right = 460.0
+offset_bottom = 197.0
+
+[node name="TextEdit" type="TextEdit" parent="Node3D/CanvasLayer/Button" unique_id=948261321]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 34.0
+offset_right = 376.0
+offset_bottom = 139.0
+text = "Press E to interact"
