@@ -58,6 +58,7 @@ _data = {
 [sub_resource type="BoxMesh" id="BoxMesh_ktfr2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_44x8d"]
+size = Vector3(1, 1.0528564, 1.1918945)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vkbyq"]
 
