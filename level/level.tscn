@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://7ufc41piqg5v"]
 
-[ext_resource type="Texture2D" uid="uid://0vtj6etgydmm" path="res://icon.svg" id="1_5gx2l"]
+[ext_resource type="Texture2D" uid="uid://esdpcfvaexut" path="res://Plugins and Scenes/House/Textures/Grass.jpg" id="1_44x8d"]
 [ext_resource type="PackedScene" uid="uid://ea26kwtnp7jn" path="res://player/player.tscn" id="2_qohg2"]
 [ext_resource type="PackedScene" uid="uid://dkwu6po8m7c8r" path="res://3dmodels/trees/scene.gltf" id="2_vkbyq"]
+[ext_resource type="Shader" uid="uid://4r7ouyuealen" path="res://level/crt.gdshader" id="3_44x8d"]
 [ext_resource type="Script" uid="uid://c4gs0fs3bppeo" path="res://level/DisplayStamina.cs" id="4_vkbyq"]
 [ext_resource type="PackedScene" path="res://Plugins and Scenes/house.tscn" id="5_ktfr2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ktfr2"]
-albedo_texture = ExtResource("1_5gx2l")
+albedo_texture = ExtResource("1_44x8d")
 uv1_scale = Vector3(3, 2, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_44x8d"]
@@ -56,6 +57,30 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qohg2"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ivpvi"]
+shader = ExtResource("3_44x8d")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.0
+shader_parameter/scanlines_width = 0.0
+shader_parameter/grille_opacity = 0.0
+shader_parameter/resolution = Vector2(1080, 920)
+shader_parameter/pixelate = true
+shader_parameter/roll = false
+shader_parameter/roll_speed = 0.0
+shader_parameter/roll_size = 6.8610003258975
+shader_parameter/roll_variation = 0.10000000149012
+shader_parameter/distort_intensity = 0.0470000022325
+shader_parameter/noise_opacity = 0.5050000239875
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.142000006745
+shader_parameter/aberration = 0.0010000475475000492
+shader_parameter/brightness = 1.0
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.070000003325
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.442000020995
+
 [sub_resource type="BoxMesh" id="BoxMesh_ktfr2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_44x8d"]
@@ -68,6 +93,7 @@ sky_material = SubResource("PanoramaSkyMaterial_vkbyq")
 
 [sub_resource type="Environment" id="Environment_ktfr2"]
 background_mode = 2
+background_energy_multiplier = 0.82
 sky = SubResource("Sky_ktfr2")
 reflected_light_source = 2
 tonemap_mode = 3
@@ -78,6 +104,7 @@ fog_depth_curve = 0.353553
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.1587
 volumetric_fog_albedo = Color(0.16924527, 0.1692453, 0.16924527, 1)
+volumetric_fog_sky_affect = 0.0
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ktfr2"]
 data = PackedVector3Array(-0.0053, 0.0025, -0.0023999999, -0.0053, 0.0025, 0.0026, -0.0053, -0.0021, 0.0026, -0.0053, -0.0021, 0.0026, -0.0053, -0.0029, -0.0023999999, -0.0053, 0.0025, -0.0023999999, 0.0053, 0.0025, 0.0026, -0.0053, 0.0025, 0.0026, -0.0053, 0.0025, -0.0023999999, -0.0053, 0.0025, -0.0023999999, 0.0053, 0.0025, -0.0023999999, 0.0053, 0.0025, 0.0026, 0.0053, -0.0021, 0.0026, 0.0053, 0.0025, 0.0026, 0.0053, 0.0025, -0.0023999999, 0.0053, 0.0025, -0.0023999999, 0.0053, -0.0029, -0.0023999999, 0.0053, -0.0021, 0.0026, -0.0053, -0.0021, 0.0026, 0.0053, -0.0021, 0.0026, 0.0053, -0.0029, -0.0023999999, 0.0053, -0.0029, -0.0023999999, -0.0053, -0.0029, -0.0023999999, -0.0053, -0.0021, 0.0026, 0.0053, -0.0029, -0.0023999999, 0.0053, 0.0025, -0.0023999999, -0.0053, 0.0025, -0.0023999999, -0.0053, 0.0025, -0.0023999999, -0.0053, -0.0029, -0.0023999999, 0.0053, -0.0029, -0.0023999999, -0.0053, -0.0021, 0.0026, -0.0053, 0.0025, 0.0026, 0.0053, 0.0025, 0.0026, 0.0053, 0.0025, 0.0026, 0.0053, -0.0021, 0.0026, -0.0053, -0.0021, 0.0026)
@@ -1207,9 +1234,9 @@ transform = Transform3D(1, 0, 0, 0, -0.045072872, -0.9772544, 0, 2.4155223, -0.0
 collide_with_bodies = false
 
 [node name="playerFlashlight" type="SpotLight3D" parent="player/head/Camera3D" parent_id_path=PackedInt32Array(1365062769, 1767537742) index="1" unique_id=620005422]
-spot_range = 16.262
-spot_attenuation = -1.0
-spot_angle = 46.74
+spot_range = 100.0
+spot_attenuation = -0.65
+spot_angle_attenuation = 3.0
 
 [node name="Node3D" type="Node3D" parent="." unique_id=1060645970]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.500552, 0)
@@ -1233,31 +1260,33 @@ shape = SubResource("BoxShape3D_qohg2")
 [node name="Button" type="Button" parent="Node3D/CanvasLayer" unique_id=345202371]
 offset_left = 10.0
 offset_top = 17.0
-offset_right = 284.0
-offset_bottom = 120.0
+offset_right = 490.0
+offset_bottom = 182.0
 
 [node name="TextEdit" type="TextEdit" parent="Node3D/CanvasLayer/Button" unique_id=948261321]
 layout_mode = 0
-offset_left = 2.0
-offset_right = 260.0
-offset_bottom = 85.0
+offset_top = 4.0
+offset_right = 453.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 50
 text = "Press E to interact"
 
-[node name="TextEdit" type="TextEdit" parent="Node3D/CanvasLayer/Button/TextEdit" unique_id=1293467196]
-layout_mode = 0
-offset_left = 2.0
-offset_right = 260.0
-offset_bottom = 85.0
-text = "Press E to interact"
+[node name="ColorRect" type="ColorRect" parent="Node3D/CanvasLayer" unique_id=308562461]
+material = SubResource("ShaderMaterial_ivpvi")
+offset_left = 6.0
+offset_top = 2.0
+offset_right = 1924.0
+offset_bottom = 1082.0
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="Node3D" unique_id=1420554751]
 
 [node name="displayStam" type="Label" parent="Node3D/CanvasLayer2" unique_id=320376609]
 self_modulate = Color(0.98234254, 0.9823423, 0.9823424, 1)
-offset_left = 10.0
-offset_top = 127.0
-offset_right = 282.0
-offset_bottom = 214.0
+offset_left = 8.0
+offset_top = 208.0
+offset_right = 301.0
+offset_bottom = 310.0
+theme_override_font_sizes/font_size = 50
 text = "Stamina: "
 script = ExtResource("4_vkbyq")
 

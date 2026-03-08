@@ -23,6 +23,11 @@ config/icon="res://icon.svg"
 
 playerGlobals="*uid://wdt6v216tbjf"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [dotnet]
 
 project/assembly_name="Balut Deliveries (Horror Minigame) EXPO"
