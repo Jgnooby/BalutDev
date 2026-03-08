@@ -68,6 +68,10 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qohg2"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_ktfr2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_44x8d"]
+
 [node name="Node3D" type="Node3D" unique_id=602292512]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=856490535]
@@ -86,6 +90,10 @@ shape = SubResource("ConcavePolygonShape3D_qohg2")
 
 [node name="player" parent="." unique_id=1365062769 instance=ExtResource("2_qohg2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7675166, 0)
+
+[node name="playerRay" parent="player/head/Camera3D" parent_id_path=PackedInt32Array(1365062769, 1767537742) index="0" unique_id=856138390]
+transform = Transform3D(1, 0, 0, 0, -0.045072872, -0.9772544, 0, 2.4155223, -0.018235253, 0, -0.058211327, -0.009181261)
+collide_with_bodies = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=192808382]
 transform = Transform3D(1, 0, 0, 0, -0.8394871, 0.54337966, 0, -0.54337966, -0.8394871, 0, 11.17981, -6.5076427)
@@ -134,3 +142,18 @@ offset_right = 438.0
 offset_bottom = 335.0
 text = "Stamina: "
 script = ExtResource("4_vkbyq")
+
+[node name="Node3D2" type="Node3D" parent="." unique_id=1691470505]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6512375, 1.7149367, -3.453764)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D2" unique_id=1354723103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75868034, 0)
+mesh = SubResource("BoxMesh_ktfr2")
+
+[node name="Area3D" type="Area3D" parent="Node3D2" unique_id=922773413]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.72643185, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D2/Area3D" unique_id=413075162]
+shape = SubResource("BoxShape3D_44x8d")
+
+[editable path="player"]

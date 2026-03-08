@@ -10,10 +10,10 @@
 [node name="player" type="CharacterBody3D" unique_id=559793081]
 script = ExtResource("1_rkbax")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1687770173]
+[node name="playerCollision" type="CollisionShape3D" parent="." unique_id=1687770173]
 shape = SubResource("CapsuleShape3D_sh265")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1288182644]
+[node name="playerBody" type="MeshInstance3D" parent="." unique_id=1288182644]
 mesh = SubResource("CapsuleMesh_4flbx")
 
 [node name="head" type="Node3D" parent="." unique_id=1953823444]
@@ -21,4 +21,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.72849214, 0)
 script = ExtResource("2_rkbax")
 
 [node name="Camera3D" type="Camera3D" parent="head" unique_id=1767537742]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19962418, -0.009181261)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.052657723, -0.19656166)
+
+[node name="playerRay" type="RayCast3D" parent="head/Camera3D" unique_id=856138390]
+transform = Transform3D(1, 0, 0, 0, -0.037576634, -0.9809058, 0, 2.0137877, -0.018303387, 0, -0.056491733, 0)
+collide_with_areas = true
